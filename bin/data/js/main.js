@@ -2,17 +2,17 @@ var onnxSession;
 var calls = 0;
 
 startOnnxSession = function() {
-	var input = document.createElement('input');
+	const input = document.createElement('input');
 	input.type = 'file';
 	input.accept = '.onnx';
 	input.onchange = function(e) {
-		var file = e.target.files[0]; 
-		var reader = new FileReader();
+		const file = e.target.files[0]; 
+		const reader = new FileReader();
 		reader.readAsArrayBuffer(file);
 		Module.onnx("loading", file.name.substring(0, file.name.length - 5));
 		reader.onload = async function() {
-			var arrayBuffer = reader.result;
-			var uint8View = new Uint8Array(arrayBuffer);
+			const arrayBuffer = reader.result;
+			const uint8View = new Uint8Array(arrayBuffer);
   			onnxSession = await ort.InferenceSession.create(uint8View, {executionProviders: ["wasm"] });
 			Module.onnx("loaded", file.name.substring(0, file.name.length - 5));
 		}
