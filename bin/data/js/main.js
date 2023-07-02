@@ -34,7 +34,7 @@ async function gptLoop(textInput, id) {
 	const tokens = GPTTokenizer_p50k_edit.encode(textOutput);
 	for (let i = 0; i < tokens.length; i++) {
 		bigInt64Array[i] = BigInt(tokens[i]);
-		bigInt64Array2[i] = BigInt(1);
+		bigInt64Array2[i] = 1n;
 	}
 	while (generatedToken < 256) {
 		await new Promise(resolve => setTimeout(resolve, 0));
@@ -51,7 +51,7 @@ async function gptLoop(textInput, id) {
 		const sorted = entries.sort((a, b) => b[1] - a[1]);
 		const newToken = parseInt(sorted[randomWithProbability()][0]);
 		bigInt64Array.push(BigInt(newToken));
-		bigInt64Array2.push(BigInt(1));
+		bigInt64Array2.push(1n);
 		var newWord = GPTTokenizer_p50k_edit.decode([newToken]);
 		newWord = newWord.replace(/(\r\n|\n|\r)/gm, " ");
 		if (newWord != "<|endoftext|>") {
