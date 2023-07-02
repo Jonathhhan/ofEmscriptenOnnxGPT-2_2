@@ -2,6 +2,7 @@ var onnxSession;
 var calls = 0;
 
 startOnnxSession = function() {
+	ort.env.wasm.numThreads = navigator.hardwareConcurrency;
 	const input = document.createElement('input');
 	input.type = 'file';
 	input.accept = '.onnx';
