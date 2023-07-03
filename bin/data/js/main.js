@@ -31,7 +31,7 @@ async function gptLoop(textInput, id) {
 	var generatedToken = 0;
 	var bigInt64Array = [];
 	var bigInt64Array2 = [];
-	const tokens = GPTTokenizer_p50k_edit.encode(textOutput);
+	const tokens = GPTTokenizer_p50k_edit.encode(textInput);
 	for (let i = 0; i < tokens.length; i++) {
 		bigInt64Array[i] = BigInt(tokens[i]);
 		bigInt64Array2[i] = 1n;
